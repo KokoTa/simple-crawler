@@ -36,12 +36,22 @@ if (window.location.href.includes('localhost')) {
 if (window.location.href.includes('1688')) {
   chrome.runtime.onMessage.addListener((message: Message, sender, sendResponse) => {
     if (message.type === MessageType.SEND_CONTENT_CRAWLER) {
-      const title = document.querySelector('.tab-title')
-      const message: Message = {
-        type: MessageType.SEND_CONTENT_CRAWLER_RESULT,
-        data: title?.innerHTML
-      }
-      sendResponse(message)
+      const attrItems = document.querySelectorAll('.offer-attr-item')
+      const attribute = {}
+
+      attrItems.forEach((item) => {
+        const name = item.querySelector('.offer-attr-item-name')?.innerHTML
+        const value = item.querySelector('.offer-attr-item-value')?.innerHTML
+        // TODO
+        // if (name) {
+        //   attribute[name] = value
+        // }
+      })
+      // const message: Message = {
+      //   type: MessageType.SEND_CONTENT_CRAWLER_RESULT,
+      //   data: title?.innerHTML
+      // }
+      sendResponse()
     } else {
       sendResponse(null)
     }

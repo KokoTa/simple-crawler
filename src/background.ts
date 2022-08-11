@@ -7,8 +7,9 @@ chrome.runtime.onMessage.addListener((message: Message, sender, sendResponse) =>
     fetch(data.url)
       .then(res => res.text())
       .then(async (html) => {
-        const productInfo: ProductInfo = alibabaRequestParse(data.url, html)
-        productInfo.attribute = await alibabaRenderParse(data.url)
+        const productInfo: ProductInfo = await alibabaRequestParse(data.url, html)
+        const attribute = await alibabaRenderParse(data.url)
+        productInfo.attribute = attribute
         sendResponse(productInfo)
       }).catch(err => {
         console.log(err)

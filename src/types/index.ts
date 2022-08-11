@@ -31,6 +31,7 @@ export type Attribute = {
 export interface ProductInfo {
   name: string
   originUrl: string
+  currency: string
   imageList: string[]
   priceRange: PriceRange[]
   skuList: SkuList[]
